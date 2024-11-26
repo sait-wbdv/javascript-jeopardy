@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const connectDB = require("./config/connectDB"); // Assume this connects correctly
+const connectDB = require("./config/connectDB");
 const { User, generateSlugsForUser } = require("./model/User");
 
 const PORT = process.env.PORT || 3000;
@@ -14,7 +14,7 @@ app.get("/users", async (req, res) => {
 
 app.get("/users/user/:slug", async (req, res) => {
   try {
-    const result = await User.findOne({ slug: req.params.user });
+    const result = User.findOne({ slug: req.params.user });
     res.json({ users: result });
   } catch (error) {
     console.error("Error: " + error);
